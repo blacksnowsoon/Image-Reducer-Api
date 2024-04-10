@@ -1,15 +1,26 @@
 import express, { Request, Response } from 'express'
-
-  const app = express()
+import cors from 'cors'
+import bodyParser from 'body-parser'
+import routes from './routes'
+  const app: express.Application = express()
   const port = 3000
 
+  app.use(cors({
+    optionsSuccessStatus: 200,
+    allowedHeaders: ['Content-Type'],
+    methods: 'POST',
+  }))
+  app.use(bodyParser.json({ limit: '3mb' }))
+  app.use(bodyParser.urlencoded({ extended: true, limit: '3mb' }))
+
   app.get('/', (_req: Request, res: Response) => {
-    return res.send('Express Typescript on Vercel')
+    return res.send('reducer api root route')
   })
 
   app.get('/ping', (_req: Request, res: Response) => {
     return res.send('pong 🏓')
   })
+  app.use('/', routes)
 
   app.listen(port, () => {
     return console.log(`Server is listening on ${port}`)
