@@ -24,8 +24,8 @@ reduce.post('/reduce', (req, res) => __awaiter(void 0, void 0, void 0, function*
             height: req.query.height,
         };
         const uploadedImage = (_a = req.body) === null || _a === void 0 ? void 0 : _a.image;
-        if (!uploadedImage) {
-            return res.status(400).send('no image was uploaded');
+        if (!uploadedImage || !width || !height) {
+            return res.status(400).send('no image was uploaded or width or height was not provided');
         }
         const strippedImage = uploadedImage.replace(/^data:image\/\w+;base64,/, '');
         const buffred = Buffer.from(strippedImage, 'base64');
@@ -43,5 +43,8 @@ reduce.post('/reduce', (req, res) => __awaiter(void 0, void 0, void 0, function*
         res.status(500).send(error);
     }
 }));
+reduce.get('/reduce', (req, res) => {
+    return res.send('you can not use get on this route :(');
+});
 exports.default = reduce;
 //# sourceMappingURL=reduce.js.map
