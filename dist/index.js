@@ -17,10 +17,7 @@ app.use((0, cors_1.default)({
 app.use(body_parser_1.default.json({ limit: '3mb' }));
 app.use(body_parser_1.default.urlencoded({ extended: true, limit: '3mb' }));
 app.get('/', (_req, res) => {
-    return res.send('reducer api root route');
-});
-app.get('/ping', (_req, res) => {
-    return res.send('pong 🏓');
+    return res.send('reducer api root route go to Documention: https://github.com/blacksnowsoon/Image-Reducer-Api');
 });
 app.use('/', routes_1.default);
 app.listen(port, () => {
