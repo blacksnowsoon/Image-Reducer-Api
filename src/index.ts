@@ -14,12 +14,10 @@ import routes from './routes'
   app.use(bodyParser.urlencoded({ extended: true, limit: '3mb' }))
 
   app.get('/', (_req: Request, res: Response) => {
-    return res.send('reducer api root route')
+    return res.send('reducer api root route go to Documention: https://github.com/blacksnowsoon/Image-Reducer-Api')
   })
 
-  app.get('/ping', (_req: Request, res: Response) => {
-    return res.send('pong 🏓')
-  })
+  
   app.use('/', routes)
 
   app.listen(port, () => {
